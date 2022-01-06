@@ -8,23 +8,33 @@ class FloatActionDemo extends StatefulWidget {
 }
 
 class _FloatActionDemo extends State<FloatActionDemo> {
+  String $title = "FloatingActionButton";
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
-    String $title = "FloatingActionButton";
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text($title),
       ),
       body: Center(
-        child: Text("You have pressed the button time."),
+        child: Text("You have pressed the button $count time."),
       ),
+
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print("Test"),
+        onPressed: () => setState(() {
+          count = count + 1;
+          print("$count");
+        }),
         tooltip: 'เพิ่มค่า',
         child: Icon(Icons.add),
       ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Container(height: 50.0,),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
     );
   }
 }
